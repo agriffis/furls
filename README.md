@@ -49,6 +49,6 @@ as containers.
 legal
 -----
 
-Copyright 2017 Scampersand LLC
+Copyright 2017 [Scampersand LLC](https://scampersand.com)
 
 Released under the [MIT license](https://github.com/scampersand/furls/blob/master/LICENSE)
