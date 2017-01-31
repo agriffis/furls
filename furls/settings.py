@@ -11,21 +11,33 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+from bienvenue import make_env_reader
+from .envbash import update_env
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Where are we?
+DREAMHOST = 'dreamhost' in open('/etc/resolv.conf').read()
+DEVELOPMENT = not DREAMHOST
+
+# Load env.bash and make a config reader
+if DREAMHOST:
+    update_env(os.path.expanduser('~/env.bash'))
+elif DEVELOPMENT:
+    update_env(os.path.join(BASE_DIR, 'env.bash'), missing_ok=True)
+env = make_env_reader(prefix='DJANGO_')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'vb^%dw%9$1z1bwxia$ednmoc+6uyn**^m@362p$6h-oed7o=8y'
+SECRET_KEY = env('SECRET_KEY', 'vb^%dw%9$1z1bwxia$ednmoc+6uyn**^m@362p$6h-oed7o=8y')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG', DEVELOPMENT)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env('ALLOWED_HOSTS', [])
 
 
 # Application definition
