@@ -1,3 +1,4 @@
-Django==1.10.5
-psycopg2==2.6.2
 bienvenue==2.0.0
+Django==1.10.5
+envbash==1.1.1
+psycopg2==2.6.2

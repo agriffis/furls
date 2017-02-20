@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 from bienvenue import make_env_reader
-from .envbash import update_env
+from envbash import load_envbash
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,11 +21,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DREAMHOST = 'dreamhost' in open('/etc/resolv.conf').read()
 DEVELOPMENT = not DREAMHOST
 
-# Load env.bash and make a config reader
+# Load env.bash
 if DREAMHOST:
-    update_env(os.path.expanduser('~/env.bash'))
+    load_envbash(os.path.expanduser('~/env.bash'))
 elif DEVELOPMENT:
-    update_env(os.path.join(BASE_DIR, 'env.bash'), missing_ok=True)
+    load_envbash(os.path.join(BASE_DIR, 'env.bash'), missing_ok=True)
+
+# Make an env reader to convert strings to inferred types
 env = make_env_reader(prefix='DJANGO_')
 
 # Quick-start development settings - unsuitable for production
