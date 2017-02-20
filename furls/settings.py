@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 from bienvenue import make_env_reader
+import dj_database_url
 from envbash import load_envbash
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -88,13 +89,10 @@ WSGI_APPLICATION = 'furls.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
-    }
+    'default': dj_database_url.config(
+        default='postgres://postgres:postgres@postgres/postgres',
+        conn_max_age=60,
+    ),
 }
 
 
