@@ -1,7 +1,15 @@
 .PHONY: dev
-dev:
+dev: build
 	docker-compose run web python manage.py migrate
 	$(MAKE) -j2 serve port
+
+# bit of a hack: rebuild the image when requirements.txt
+# is newer than Dockerfile, then touch Dockerfile to keep up.
+.PHONY: build
+build: Dockerfile
+Dockerfile: requirements.txt
+	docker-compose build web
+	@touch Dockerfile
 
 .PHONY: serve
 serve:
