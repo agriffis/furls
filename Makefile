@@ -1,15 +1,11 @@
 .PHONY: dev
-dev: build
+dev:
+	docker-compose run web bash -c \
+	    'test -d .virtualenv/bin || virtualenv .virtualenv'
+	docker-compose run web pip install -r requirements.txt
+	docker-compose run web chmod -R a+rwX .virtualenv
 	docker-compose run web python manage.py migrate
 	$(MAKE) -j2 serve port
-
-# bit of a hack: rebuild the image when requirements.txt
-# is newer than Dockerfile, then touch Dockerfile to keep up.
-.PHONY: build
-build: Dockerfile
-Dockerfile: requirements.txt
-	docker-compose build web
-	@touch Dockerfile
 
 .PHONY: serve
 serve:

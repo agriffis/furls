@@ -1,4 +1,6 @@
 .git*
+.pgdata
+.ropeproject
+.virtualenv
 __pycache__
-
-pgdata
+*.pyc
