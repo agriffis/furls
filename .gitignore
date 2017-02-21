@@ -89,4 +89,4 @@ celerybeat-schedule
 /env.bash
 
 # docker volumes
-/pgdata
+/.pgdata
