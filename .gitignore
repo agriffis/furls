@@ -90,3 +90,6 @@ celerybeat-schedule
 
 # docker volumes
 /.pgdata
+
+# emacs
+.dir-locals.el
