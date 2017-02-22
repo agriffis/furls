@@ -89,6 +89,7 @@ celerybeat-schedule
 /env.bash
 
 # docker volumes
+/.mysql
 /.pgdata
 
 # emacs

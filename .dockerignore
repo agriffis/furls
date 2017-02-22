@@ -1,5 +1,6 @@
 .dir-locals.el
 .git*
+.mysql
 .pgdata
 .ropeproject
 .virtualenv

@@ -74,10 +74,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'furls.wsgi.application'
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgres://postgres:postgres@postgres/postgres',
-        conn_max_age=60,
-    ),
+    'default': dj_database_url.config(conn_max_age=60),
 }
 
 AUTH_PASSWORD_VALIDATORS = [
