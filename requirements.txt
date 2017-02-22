@@ -1,4 +1,4 @@
-bienvenue==2.0.0
+bienvenue==3.0.0
 dj-database-url==0.4.2
 Django==1.10.5
 envbash==1.1.1
