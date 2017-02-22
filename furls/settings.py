@@ -24,7 +24,7 @@ elif DEVELOPMENT:
 env = make_env_reader(prefix='DJANGO_')
 
 # This is the dev key, should always be overridden in production.
-SECRET_KEY = env('SECRET_KEY', 'vb^%dw%9$1z1bwxia$ednmoc+6uyn**^m@362p$6h-oed7o=8y')
+SECRET_KEY = env('SECRET_KEY', 'sekrit-dev-key', required=not DEVELOPMENT)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG', DEVELOPMENT)
